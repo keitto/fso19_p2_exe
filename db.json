@@ -1,0 +1,22 @@
+{
+    "notes" : [
+        {
+            "id":1,
+            "content":"html jsön",
+            "date":"2019-05-30T17:30:31.098Z",
+            "important": true
+        },
+        {
+            "id":2,
+            "content":"browsssser jsån",
+            "date":"2019-05-30T18:12:31.098Z",
+            "important": false
+        },
+        {
+            "id":3,
+            "content":"get+post jsõn",
+            "date":"2019-05-30T19:20:14.098Z",
+            "important": true
+        }
+    ]
+}

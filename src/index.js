@@ -1,5 +1,20 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
+import './App.css';
+/*
+const promise = axios.get('http://localhost:3001/notes')
+console.log(promise)
+
+const promise2 = axios.get('http://localhost:3001/pask')
+console.log(promise2)
+
+promise.then(response => {
+    console.log("p1:", response)
+})
+promise2.then(response => {
+    console.log("p2:", response)
+})
 
 const notes = [
     {
@@ -21,24 +36,5 @@ const notes = [
         important: true
     }
 ];
-
-
-
-const App = (props) => {
-    const {notes} = props
-    return (
-        <>
-            <h1>hop!</h1>
-            <span>{[1,2,3]}</span>
-            <ul>
-                {
-                    notes.map((note, key) => <li key={key}>{note.content}</li>)
-                }
-            </ul>
-        </>
-    )
-
-}
-
-
-ReactDOM.render(<App notes={notes}/>, document.getElementById('root'));
+*/
+ReactDOM.render(<App />, document.getElementById('root'));
