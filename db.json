@@ -1,22 +1,52 @@
 {
-    "notes" : [
-        {
-            "id":1,
-            "content":"html jsön",
-            "date":"2019-05-30T17:30:31.098Z",
-            "important": true
-        },
-        {
-            "id":2,
-            "content":"browsssser jsån",
-            "date":"2019-05-30T18:12:31.098Z",
-            "important": false
-        },
-        {
-            "id":3,
-            "content":"get+post jsõn",
-            "date":"2019-05-30T19:20:14.098Z",
-            "important": true
-        }
-    ]
+  "notes": [
+    {
+      "id": 1,
+      "content": "html jsön",
+      "date": "2019-05-30T17:30:31.098Z",
+      "important": true
+    },
+    {
+      "id": 2,
+      "content": "browser jsån",
+      "date": "2019-05-30T18:12:31.098Z",
+      "important": true
+    },
+    {
+      "id": 3,
+      "content": "get+post jsõn",
+      "date": "2019-05-30T19:20:14.098Z",
+      "important": false
+    },
+    {
+      "content": "initial value for newNote input",
+      "date": "2020-02-26T10:29:28.756Z",
+      "important": false,
+      "id": 4
+    },
+    {
+      "content": "initial value for newNote input",
+      "date": "2020-02-26T10:30:57.503Z",
+      "important": false,
+      "id": 5
+    },
+    {
+      "content": "banaan",
+      "date": "2020-02-26T10:34:16.020Z",
+      "important": false,
+      "id": 6
+    },
+    {
+      "content": "hyyy",
+      "date": "2020-02-26T10:34:19.765Z",
+      "important": false,
+      "id": 7
+    },
+    {
+      "content": "delete?",
+      "date": "2020-02-26T10:36:03.748Z",
+      "important": false,
+      "id": 8
+    }
+  ]
 }
