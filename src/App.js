@@ -11,7 +11,7 @@ const App = () => {
 
     useEffect(() => {
         noteService.getAll()
-            .then(res => setNotes(res.data))
+            .then(initNotes => {setNotes(initNotes)})
     }, []) 
     console.log('renderr', notes.length, 'notes')
 
@@ -36,12 +36,9 @@ const App = () => {
         const url = 'http://localhost:3001/notes/'+id
         const theNote = notes.find(aNote => aNote.id === id) // find takes function wtf
         const updatedNote = {...theNote, important: !theNote.important}
-        console.log(`note id${id} needs to toggle importance, ${theNote.content}`) // weird fucking quotes
         
         noteService.update(id, updatedNote)
-            .then(res => setNotes(
-                notes.map(note => note.id !== id ? note : res.data))
-            )
+            .then(upNote => setNotes(notes.map(note => note.id !== updatedNote.id ? note : updatedNote)))
     }
 
     // adding
@@ -51,11 +48,11 @@ const App = () => {
         const noteObject = {
             content: newNote,
             date: new Date().toISOString(),
-            important: Math.random() > 0.5,
+            important: 0 //Math.random() > 0.5,
         }
 
         noteService.create(noteObject)
-            .then(res => (setNotes(notes.concat(res.data))))
+            .then(newNote => (setNotes(notes.concat(newNote))))
         setLaskuri(laskuri +1)
     }
 

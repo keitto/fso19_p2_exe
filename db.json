@@ -53,6 +53,12 @@
       "date": "2020-02-28T11:25:41.122Z",
       "important": true,
       "id": 9
+    },
+    {
+      "content": "initial value for newNote input",
+      "date": "2020-02-28T13:45:28.354Z",
+      "important": false,
+      "id": 10
     }
   ]
 }
