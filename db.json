@@ -16,37 +16,43 @@
       "id": 3,
       "content": "get+post jsõn",
       "date": "2019-05-30T19:20:14.098Z",
-      "important": false
+      "important": true
     },
     {
       "content": "initial value for newNote input",
       "date": "2020-02-26T10:29:28.756Z",
-      "important": false,
+      "important": true,
       "id": 4
     },
     {
       "content": "initial value for newNote input",
       "date": "2020-02-26T10:30:57.503Z",
-      "important": false,
+      "important": true,
       "id": 5
     },
     {
       "content": "banaan",
       "date": "2020-02-26T10:34:16.020Z",
-      "important": false,
+      "important": true,
       "id": 6
     },
     {
       "content": "hyyy",
       "date": "2020-02-26T10:34:19.765Z",
-      "important": false,
+      "important": true,
       "id": 7
     },
     {
       "content": "delete?",
       "date": "2020-02-26T10:36:03.748Z",
-      "important": false,
+      "important": true,
       "id": 8
+    },
+    {
+      "content": "initial value for newNote input",
+      "date": "2020-02-28T11:25:41.122Z",
+      "important": true,
+      "id": 9
     }
   ]
 }

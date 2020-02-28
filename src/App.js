@@ -1,11 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Note from './components/Note'
-import axios from 'axios'
-//import noteService from './services/notes'
+import noteService from './services/notes'
 import './App.css'
-
-
-
 
 const App = () => {
     const [laskuri, setLaskuri] = useState(0)
@@ -13,18 +9,11 @@ const App = () => {
     const [notes, setNotes] = useState([])
     const [newNote, setNewNote] = useState('initial value for newNote input')
 
-    const axiosHook = () => {
-        console.log('effect happening, axios going to get')
-        axios
-            .get('http://localhost:3001/notes')
-            .then(res => {
-                console.log('axios thenning')
-                setNotes(res.data)
-        })
-    }
-    useEffect(axiosHook, []) // empty arr = only runs on first render
+    useEffect(() => {
+        noteService.getAll()
+            .then(res => setNotes(res.data))
+    }, []) 
     console.log('renderr', notes.length, 'notes')
-
 
     // filter notes with important or all
     const notesToShow = showAll ? notes : notes.filter(note => note.important === true)
@@ -49,12 +38,10 @@ const App = () => {
         const updatedNote = {...theNote, important: !theNote.important}
         console.log(`note id${id} needs to toggle importance, ${theNote.content}`) // weird fucking quotes
         
-        axios.put(url, updatedNote)
-            .then(res => {
-                setNotes(notes.map(note => note.id !== id ? note : res.data))
-                // alt: (note) => {return note.id !== id ? note : res.data} // need to return out of {} bananapeels
-            })
-
+        noteService.update(id, updatedNote)
+            .then(res => setNotes(
+                notes.map(note => note.id !== id ? note : res.data))
+            )
     }
 
     // adding
@@ -67,19 +54,14 @@ const App = () => {
             important: Math.random() > 0.5,
         }
 
-        axios
-            .post('http://localhost:3001/notes',noteObject)
-            .then(res => {
-                setNotes(notes.concat(res.data))
-                setNewNote('')
-            })
+        noteService.create(noteObject)
+            .then(res => (setNotes(notes.concat(res.data))))
         setLaskuri(laskuri +1)
     }
 
     return (
         <>
             <h1>hop! {laskuri}</h1>
-            <span>{[1,2,3]}</span>
         <button onClick={() => setShowAll(!showAll)} >show {showAll ? 'important' : 'all'}</button>
             <ul>
                 {rows()}

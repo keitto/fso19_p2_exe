@@ -6,7 +6,6 @@ const Note = ({note, toggleImportance}) => {
     <li>
         <button onClick={toggleImportance}>{label}</button>
         {note.important ? '(!!!) ':''}{note.content} 
-        
     </li>
     )
 }
