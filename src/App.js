@@ -17,14 +17,6 @@ const App = () => {
 
     // filter notes with important or all
     const notesToShow = showAll ? notes : notes.filter(note => note.important === true)
-    const rows = () => notesToShow.map(note => {
-        // don't use key from map(value, key) as key, might roll over to wrong element on delete
-        return <Note 
-            key={note.id} 
-            note={note} 
-            toggleImportance={() => toggleImportanceOf(note.id)}
-        />
-    })
 
     //basic event handler
     const handleNoteChange = (event) => {
@@ -32,16 +24,35 @@ const App = () => {
         setNewNote(event.target.value)
     }
 
+    // mark important/unimportant, edit(put) stuff in db
     const toggleImportanceOf = id => {
         const url = 'http://localhost:3001/notes/'+id
         const theNote = notes.find(aNote => aNote.id === id) // find takes function wtf
         const updatedNote = {...theNote, important: !theNote.important}
         
-        noteService.update(id, updatedNote)
-            .then(upNote => setNotes(notes.map(note => note.id !== updatedNote.id ? note : updatedNote)))
+        noteService
+            .update(id, updatedNote)
+            .then(upNote => setNotes(notes.map(note => note.id !== updatedNote.id ? note : updatedNote))).catch(error => {
+                alert("note " + updatedNote.content + " does not exist, deledin")
+                setNotes(notes.filter(n => n.id !== id))
+            })
+
+            
+            /*
+.update(id, changedNote)
+.then(returnedNote => {
+      setNotes(notes.map(note => note.id !== id ? note : returnedNote))
+    })
+    .catch(error => {
+      alert(
+        `the note '${note.content}' was already deleted from server`
+      )
+      setNotes(notes.filter(n => n.id !== id))
+    })            
+            */
     }
 
-    // adding
+    // adding, create stuff in db
     const addNote = (event) => {
         event.preventDefault()
 
@@ -55,6 +66,16 @@ const App = () => {
             .then(newNote => (setNotes(notes.concat(newNote))))
         setLaskuri(laskuri +1)
     }
+
+    // return notes to render
+    const rows = () => notesToShow.map(note => {
+        // don't use key from map(value, key) as key, might roll over to wrong element on delete
+        return <Note 
+            key={note.id} 
+            note={note} 
+            toggleImportance={() => toggleImportanceOf(note.id)}
+        />
+    })
 
     return (
         <>

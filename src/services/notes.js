@@ -3,7 +3,13 @@ const baseUrl = 'http://localhost:3001/notes'
 
 const getAll = () => {
     const req = axios.get(baseUrl)
-    return req.then(res => res.data)
+    const fakeNoteForTest = {
+        id:9999,
+        content:"THIS NOTE DOES NOT EXIST",
+        date:"2070-01-01T00:30:31.098Z",
+        important:true
+    }
+    return req.then(res => res.data.concat(fakeNoteForTest))
 }
 
 const create = (newObject) => {
@@ -21,3 +27,12 @@ export default {
     create: create,
     update: update
 }
+/* koska exportataan samalla nimellä kuin ne täällä esitellään niin voi myös
+
+export default {
+    getAll,
+    create,
+    update
+}
+
+*/
