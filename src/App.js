@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Note from './components/Note'
+import Notification from './components/Notification'
 import noteService from './services/notes'
 import './App.css'
 
@@ -8,6 +9,7 @@ const App = () => {
     const [showAll, setShowAll] = useState(true)
     const [notes, setNotes] = useState([])
     const [newNote, setNewNote] = useState('initial value for newNote input')
+    const [errorMsg, setErrorMsg] = useState(null)
 
     useEffect(() => {
         noteService.getAll()
@@ -33,23 +35,9 @@ const App = () => {
         noteService
             .update(id, updatedNote)
             .then(upNote => setNotes(notes.map(note => note.id !== updatedNote.id ? note : updatedNote))).catch(error => {
-                alert("note " + updatedNote.content + " does not exist, deledin")
+                setErrorMsg("note " + updatedNote.content + " does not exist, deledin")
                 setNotes(notes.filter(n => n.id !== id))
             })
-
-            
-            /*
-.update(id, changedNote)
-.then(returnedNote => {
-      setNotes(notes.map(note => note.id !== id ? note : returnedNote))
-    })
-    .catch(error => {
-      alert(
-        `the note '${note.content}' was already deleted from server`
-      )
-      setNotes(notes.filter(n => n.id !== id))
-    })            
-            */
     }
 
     // adding, create stuff in db
@@ -80,6 +68,7 @@ const App = () => {
     return (
         <>
             <h1>hop! {laskuri}</h1>
+            <Notification message={errorMsg} banana="bansku"/>
         <button onClick={() => setShowAll(!showAll)} >show {showAll ? 'important' : 'all'}</button>
             <ul>
                 {rows()}
